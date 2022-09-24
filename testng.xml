@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Wikipedia Test Suite">
+    <parameter name="browser" value="CH" />
     <test verbose="2" name="Wikipedia Search Test">
-        <classes/>
+        <classes>
+            <class name="org.wiki.tests.WikiTests">
+                <methods>
+                    <include name="searchArticleTest"/>
+                </methods>
+            </class>
+        </classes>
     </test>
 </suite>
