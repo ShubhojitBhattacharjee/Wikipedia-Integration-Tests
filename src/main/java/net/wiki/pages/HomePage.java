@@ -25,7 +25,7 @@ public class HomePage extends BasePage {
     }
 
     public ArticlePage selectAmongSearchResults(String searchText) {
-        waitForElementToBeVisible(suggestionsList);
+        waitForElementToBeClickable(suggestionsList);
         if (suggestionsList.findElement(By.tagName("h3")).getText().equalsIgnoreCase(searchText)) {
             suggestionsList.click();
             return new ArticlePage(driver);

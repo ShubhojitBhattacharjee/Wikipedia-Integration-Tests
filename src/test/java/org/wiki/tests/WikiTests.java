@@ -3,7 +3,8 @@ package org.wiki.tests;
 import net.wiki.pages.HomePage;
 import org.testng.annotations.Test;
 
-import static org.testng.AssertJUnit.assertTrue;
+import static org.testng.Assert.assertEquals;
+
 
 public class WikiTests extends BaseTest {
 
@@ -16,6 +17,6 @@ public class WikiTests extends BaseTest {
         homePage.searchFor(searchText);
         articlePage = homePage.selectAmongSearchResults(searchText);
 
-        assertTrue(articlePage.getPageTitle().contains(searchText));
+        assertEquals(articlePage.getArticleHeading(), searchText);
     }
 }
