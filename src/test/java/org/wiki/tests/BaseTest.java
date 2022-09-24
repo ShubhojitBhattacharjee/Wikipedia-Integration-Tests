@@ -6,6 +6,7 @@ import net.wiki.pages.HomePage;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.ITestResult;
+import org.testng.Reporter;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.wiki.reports.GetScreenShot;
@@ -43,5 +44,9 @@ public class BaseTest {
         if (driver != null) {
             driver.quit();
         }
+    }
+
+    public void reportLog(String message) {
+        Reporter.log(message);
     }
 }

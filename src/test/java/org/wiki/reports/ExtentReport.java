@@ -62,14 +62,12 @@ public class ExtentReport implements IReporter, ITestListener {
 
                 if (status.name().equals("FAIL")) {
                     test.log( status, "Test " + status.toString().toLowerCase() + "ed" );
-                    test.log(LogStatus.FAIL, "Snapshot below: " + test.addScreenCapture(screenshotPath));
                 }
 
                 if (result.getThrowable() != null) {
                     test.log( status, result.getThrowable() );
                 } else {
-                    test.log( status, "Test " + status.toString().toLowerCase()
-                            + "ed" );
+                    test.log( status, "Test " + status.toString().toLowerCase() + "ed" );
                 }
                 extent.endTest( test );
             }
