@@ -1,6 +1,7 @@
 package org.wiki.tests;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import net.wiki.pages.ArticlePage;
 import net.wiki.pages.HomePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -13,6 +14,7 @@ public class BaseTest {
 
     WebDriver driver;
     HomePage homePage;
+    ArticlePage articlePage;
 
     @BeforeMethod
     public void setup() {
