@@ -3,9 +3,9 @@
 <suite name="Wikipedia Test Suite">
     <listeners>
         <listener
-                class-name="org.wiki.reports.ExtentReport" />
+                class-name="org.wiki.reports.ExtentReport"/>
     </listeners>
-    <parameter name="browser" value="CH" />
+    <parameter name="browser" value="CH"/>
     <test verbose="2" name="Wikipedia Search Test">
         <classes>
             <class name="org.wiki.tests.WikiTests">
