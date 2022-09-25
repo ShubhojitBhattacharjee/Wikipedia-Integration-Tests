@@ -54,7 +54,7 @@ public class BaseTest {
     }
 
     @DataProvider(name = "Search Article")
-    public static Object[][] searchArticle() throws IOException {
+    public static Object[][] searchArticle() throws Exception {
 
         ArrayList<String> testObjArray = ExcelUtil.readExcelData("testdata.xlsx");
         Object[][] o = new Object[testObjArray.size()][1];
