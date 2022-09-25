@@ -6,6 +6,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
 
+import java.time.Duration;
+
 
 public class DriverManager {
 
@@ -27,6 +29,8 @@ public class DriverManager {
             }
             driver.manage().window().maximize();
 
+            setWebDriverTimeouts();
+
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Cannot set browser " + browserName);
@@ -46,5 +50,13 @@ public class DriverManager {
 
     private WebDriver getSafariDriver() {
         return new SafariDriver();
+    }
+
+    private void setWebDriverTimeouts() throws Exception {
+        if (driver != null) {
+            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        } else {
+            throw new Exception("Driver is null. Cannot set driver timeouts.");
+        }
     }
 }

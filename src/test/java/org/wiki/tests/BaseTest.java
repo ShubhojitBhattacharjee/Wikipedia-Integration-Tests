@@ -3,16 +3,19 @@ package org.wiki.tests;
 import net.wiki.drivermanager.DriverManager;
 import net.wiki.pages.ArticlePage;
 import net.wiki.pages.HomePage;
+import net.wiki.utils.ExcelUtil;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.ITestResult;
 import org.testng.Reporter;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
 import org.wiki.reports.GetScreenShot;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 
@@ -48,5 +51,17 @@ public class BaseTest {
 
     public void reportLog(String message) {
         Reporter.log(message);
+    }
+
+    @DataProvider(name = "Search Article")
+    public static Object[][] searchArticle() throws IOException {
+
+        ArrayList<String> testObjArray = ExcelUtil.readExcelData("testdata.xlsx");
+        Object[][] o = new Object[testObjArray.size()][1];
+        for (int i = 0; i < testObjArray.size(); i++) {
+            o[i][0] = testObjArray.get(i);
+        }
+        return o;
+
     }
 }

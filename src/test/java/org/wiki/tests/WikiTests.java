@@ -8,10 +8,11 @@ import static org.testng.Assert.assertEquals;
 
 public class WikiTests extends BaseTest {
 
-    @Test
-    public void searchArticleTest() {
 
-        String searchText = "Apollo 11";
+    @Test(dataProvider = "Search Article")
+    public void searchArticleTest(String searchText) {
+
+//        String searchText = "Apollo 11";
         reportLog("Launch Wikipedia Page");
         homePage = new HomePage(driver);
 
@@ -21,7 +22,7 @@ public class WikiTests extends BaseTest {
         reportLog("Select among search results");
         articlePage = homePage.selectAmongSearchResults(searchText);
 
-        reportLog("Verify correct article page opened");
+        reportLog("Verify article for \"" + searchText + "\" loaded");
         assertEquals(articlePage.getArticleHeading(), searchText);
     }
 }

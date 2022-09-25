@@ -3,13 +3,10 @@ package org.wiki.reports;
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.testng.*;
 import org.testng.xml.XmlSuite;
 
 import java.io.File;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -18,7 +15,6 @@ import java.util.Map;
 public class ExtentReport implements IReporter, ITestListener {
     private ExtentReports extent;
     private ExtentTest test;
-    private String screenshotPath;
 
     public void generateReport(List<XmlSuite> xmlSuites, List<ISuite> suites,
                                String outputDirectory) {
