@@ -27,7 +27,8 @@ public class BaseTest {
 
     @BeforeMethod
     public void setup(ITestContext ctx) {
-        String browserName = ctx.getCurrentXmlTest().getParameter("browser");
+        String browserName = System.getProperty("browser", "CH");
+//        String browserName = ctx.getCurrentXmlTest().getParameter("browser");
         driver = new DriverManager().getWebDriver(browserName);
     }
 
