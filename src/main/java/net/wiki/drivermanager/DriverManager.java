@@ -3,7 +3,9 @@ package net.wiki.drivermanager;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.safari.SafariDriver;
 
 import java.time.Duration;
@@ -40,12 +42,20 @@ public class DriverManager {
 
     private WebDriver getFirefoxDriver() {
         WebDriverManager.firefoxdriver().setup();
-        return new FirefoxDriver();
+        FirefoxOptions firefoxOptions = new FirefoxOptions();
+        if (System.getProperty("headless").equals("true")) {
+            firefoxOptions.addArguments("--headless");
+        }
+        return new FirefoxDriver(firefoxOptions);
     }
 
     private WebDriver getChromeDriver() {
         WebDriverManager.chromedriver().setup();
-        return new ChromeDriver();
+        ChromeOptions chromeOptions = new ChromeOptions();
+        if (System.getProperty("headless").equals("true")) {
+            chromeOptions.addArguments("--headless");
+        }
+        return new ChromeDriver(chromeOptions);
     }
 
     private WebDriver getSafariDriver() {

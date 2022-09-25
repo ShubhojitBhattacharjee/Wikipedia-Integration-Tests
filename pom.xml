@@ -50,6 +50,7 @@
                 <configuration>
                     <systemPropertyVariables>
                         <propertyName>browser</propertyName>
+                        <propertyName>headless</propertyName>
                     </systemPropertyVariables>
                     <suiteXmlFiles>
                         <suiteXmlFile>testng.xml</suiteXmlFile>
