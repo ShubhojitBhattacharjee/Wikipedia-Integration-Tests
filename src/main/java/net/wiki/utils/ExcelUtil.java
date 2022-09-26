@@ -5,15 +5,15 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 
 public class ExcelUtil {
 
-    public static ArrayList<String> readExcelData(String excelPath) throws Exception {
+    public static ArrayList<String> readExcelData() throws Exception {
 
+        String excelPath = ConfigUtil.retrieveConfigValue("testDataFile");
         InputStream is = ExcelUtil.class.getClassLoader().getResourceAsStream(excelPath);
 
         if (is != null) {

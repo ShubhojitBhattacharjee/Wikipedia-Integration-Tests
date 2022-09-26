@@ -43,7 +43,8 @@ public class DriverManager {
     private WebDriver getFirefoxDriver() {
         WebDriverManager.firefoxdriver().setup();
         FirefoxOptions firefoxOptions = new FirefoxOptions();
-        if (System.getProperty("headless").equals("true")) {
+        String headlesStatus = System.getProperty("headless", "false");
+        if (headlesStatus.equals("true")) {
             firefoxOptions.addArguments("--headless");
         }
         return new FirefoxDriver(firefoxOptions);
@@ -52,7 +53,8 @@ public class DriverManager {
     private WebDriver getChromeDriver() {
         WebDriverManager.chromedriver().setup();
         ChromeOptions chromeOptions = new ChromeOptions();
-        if (System.getProperty("headless").equals("true")) {
+        String headlesStatus = System.getProperty("headless", "false");
+        if (headlesStatus.equals("true")) {
             chromeOptions.addArguments("--headless");
         }
         return new ChromeDriver(chromeOptions);

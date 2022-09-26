@@ -11,9 +11,6 @@ public class HomePage extends BasePage {
     @FindBy(id = "searchInput")
     private WebElement searchBox;
 
-    @FindBy(css = "div.suggestions-dropdown>a")
-    private WebElement suggestionsList;
-
     public HomePage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
@@ -25,11 +22,8 @@ public class HomePage extends BasePage {
     }
 
     public ArticlePage selectAmongSearchResults(String searchText) {
-        waitForElementToBeClickable(suggestionsList);
-        if (suggestionsList.findElement(By.tagName("h3")).getText().equalsIgnoreCase(searchText)) {
-            suggestionsList.click();
-            return new ArticlePage(driver);
-        }
-        return null;
+        String cssPath = "div.suggestions-dropdown>a h3";
+        retryGetElementTextAndClick(By.cssSelector(cssPath), searchText);
+        return new ArticlePage(driver);
     }
 }
