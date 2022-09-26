@@ -20,22 +20,36 @@ import java.util.ArrayList;
 import java.util.Date;
 
 
+/**
+ * Parent class of all TestNG methods
+ * for common(reusable) methods
+ */
 public class BaseTest {
 
     WebDriver driver;
     HomePage homePage;
     ArticlePage articlePage;
 
+
+    /**
+     * Called before TestNG method
+     * Sets up Webdriver taking parameter
+     * from maven command-line arguments
+     */
     @BeforeMethod
-    public void setup(ITestContext ctx) {
+    public void setup() {
         String browserName = System.getProperty("browser", "CH");
         Logs.info("Set browser to " + browserName);
-//        String browserName = ctx.getCurrentXmlTest().getParameter("browser");
         driver = new DriverManager().getWebDriver(browserName);
         Logs.info("launched Web Driver");
     }
 
-    @AfterMethod(alwaysRun = true)
+    /**
+     * Releases Webdriver object after test method run
+     * Takes screenshot when test fails
+     * @param iResult: TestNG Test Method Result
+     */
+    @AfterMethod
     public void tearDown(ITestResult iResult) {
         if (iResult.getStatus() == iResult.FAILURE) {
             String testName = iResult.getName().trim();
@@ -55,11 +69,19 @@ public class BaseTest {
         }
     }
 
+    /**
+     * Output log to HTML reporter and console Log
+     * @param message: Message to be logged
+     */
     public void reportLog(String message) {
         Logs.info(message);
         Reporter.log(message);
     }
 
+    /**
+     * @return test data from Excel sheet
+     * @throws Exception to handle Excel File InputStream
+     */
     @DataProvider(name = "Search Article")
     public static Object[][] searchArticle() throws Exception {
 
@@ -69,6 +91,5 @@ public class BaseTest {
             o[i][0] = testObjArray.get(i);
         }
         return o;
-
     }
 }

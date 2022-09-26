@@ -11,16 +11,30 @@ public class HomePage extends BasePage {
     @FindBy(id = "searchInput")
     private WebElement searchBox;
 
+    /**
+     * Constructor
+     * @param driver initialized in BaseTest and passed from TestNG method
+     */
     public HomePage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
         driver.get("https://www.wikipedia.org/");
     }
 
+    /**
+     * Enter search string
+     * @param searchText: search string
+     */
     public void searchFor(String searchText) {
         searchBox.sendKeys(searchText);
     }
 
+    /**
+     * Select from the drop-down list the string matching the searchText
+     * Selecting this result navigates user to the next page, when success
+     * @param searchText: search string
+     * @return instance of ArticlePage
+     */
     public ArticlePage selectAmongSearchResults(String searchText) {
         String cssPath = "div.suggestions-dropdown>a h3";
         retryGetElementTextAndClick(By.cssSelector(cssPath), searchText);

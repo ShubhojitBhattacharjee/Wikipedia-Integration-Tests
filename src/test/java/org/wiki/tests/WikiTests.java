@@ -6,13 +6,19 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.assertEquals;
 
 
+/**
+ * TestNG Class to Verify Search on Wikipedia
+ */
 public class WikiTests extends BaseTest {
 
 
+    /**
+     * End-to-end test to verify Wikipedia search
+     * @param searchText from DataProvider method defined in parent class - BaseTest
+     */
     @Test(dataProvider = "Search Article")
     public void searchArticleTest(String searchText) {
 
-//        String searchText = "Apollo 11";
         reportLog("Launch Wikipedia Page");
         homePage = new HomePage(driver);
 
