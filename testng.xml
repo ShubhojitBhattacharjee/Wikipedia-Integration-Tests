@@ -1,18 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Wikipedia Test Suite" thread-count="10" parallel="methods">
+<suite name="Wikipedia Test Suite">
     <listeners>
         <listener
                 class-name="org.wiki.reports.ExtentReport"/>
     </listeners>
-    <parameter name="browser" value="CH"/>
-    <test verbose="2" name="Wikipedia Search Test">
+    <test name="Wikipedia Search Test">
         <classes>
-            <class name="org.wiki.tests.WikiTests">
-                <methods>
-                    <include name="searchArticleTest"/>
-                </methods>
-            </class>
+            <class name="org.wiki.tests.WikiTests"/>
         </classes>
     </test>
 </suite>
