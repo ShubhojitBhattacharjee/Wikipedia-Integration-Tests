@@ -26,7 +26,7 @@ public class BasePage {
             try {
                 if (driver.findElement(by).getText().equals(text)) {
                     driver.findElement(by).click();
-                    break;
+                    return;
                 }
             } catch(StaleElementReferenceException e) {
                 System.out.println("Attempt No. " + attempts + " to find " + text + " failed");
@@ -34,5 +34,6 @@ public class BasePage {
                 System.out.println("Attempt in WebDriverException catch = " + attempts);
             }
         }
+        throw new TimeoutException("Article with text " + text + " not found.");
     }
 }

@@ -44,7 +44,7 @@ public class DriverManager {
         WebDriverManager.firefoxdriver().setup();
         FirefoxOptions firefoxOptions = new FirefoxOptions();
         String headlesStatus = System.getProperty("headless", "false");
-        if (headlesStatus.equals("true")) {
+        if (headlesStatus.equalsIgnoreCase("true")) {
             firefoxOptions.addArguments("--headless");
         }
         return new FirefoxDriver(firefoxOptions);
@@ -54,13 +54,15 @@ public class DriverManager {
         WebDriverManager.chromedriver().setup();
         ChromeOptions chromeOptions = new ChromeOptions();
         String headlesStatus = System.getProperty("headless", "false");
-        if (headlesStatus.equals("true")) {
+        if (headlesStatus.equalsIgnoreCase("true")) {
             chromeOptions.addArguments("--headless");
         }
         return new ChromeDriver(chromeOptions);
     }
 
-    private WebDriver getSafariDriver() {
+    private WebDriver getSafariDriver() throws Exception {
+        if (System.getProperty("headless", "false").equalsIgnoreCase("true"))
+            throw new Exception("Headless Mode is not supported in Safari");
         return new SafariDriver();
     }
 
