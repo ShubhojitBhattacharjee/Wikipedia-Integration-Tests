@@ -41,7 +41,7 @@ public class ExtentReport implements IReporter, ITestListener {
 
         if (tests.size() > 0) {
             for (ITestResult result : tests.getAllResults()) {
-                test = extent.startTest( result.getMethod().getMethodName() );
+                test = extent.startTest( result.getMethod().getMethodName() ).assignCategory("Regression");
 
                 test.setStartedTime( getTime( result.getStartMillis() ) );
                 test.setEndedTime( getTime( result.getEndMillis() ) );
