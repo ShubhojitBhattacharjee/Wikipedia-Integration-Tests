@@ -29,7 +29,7 @@ public class BasePage {
                     break;
                 }
             } catch(StaleElementReferenceException e) {
-                System.out.println("Attempt = " + attempts + " to find " + text + " failed");
+                System.out.println("Attempt No. " + attempts + " to find " + text + " failed");
             } catch (WebDriverException e) {
                 System.out.println("Attempt in WebDriverException catch = " + attempts);
             }

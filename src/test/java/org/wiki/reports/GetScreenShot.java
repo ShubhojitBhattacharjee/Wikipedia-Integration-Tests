@@ -12,12 +12,12 @@ import java.io.IOException;
 
 public class GetScreenShot {
 
-	public static void capture(WebDriver driver, String screenShotName) throws IOException {
+	public static String capture(WebDriver driver, String screenShotName) throws IOException {
 		TakesScreenshot ts = (TakesScreenshot)driver;
 		File source = ts.getScreenshotAs(OutputType.FILE);
 		String dest = "test-output" + File.separator + "Screenshots" + File.separator + screenShotName+".png";
 		File destination = new File(dest);
 		FileUtils.copyFile(source, destination);
+		return dest;
 	}
-	
 }

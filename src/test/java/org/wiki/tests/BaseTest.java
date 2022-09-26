@@ -12,6 +12,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.wiki.reports.GetScreenShot;
+import org.wiki.reports.Logs;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -28,18 +29,22 @@ public class BaseTest {
     @BeforeMethod
     public void setup(ITestContext ctx) {
         String browserName = System.getProperty("browser", "CH");
+        Logs.info("Set browser to " + browserName);
 //        String browserName = ctx.getCurrentXmlTest().getParameter("browser");
         driver = new DriverManager().getWebDriver(browserName);
+        Logs.info("launched Web Driver");
     }
 
     @AfterMethod(alwaysRun = true)
     public void tearDown(ITestResult iResult) {
         if (iResult.getStatus() == iResult.FAILURE) {
             String testName = iResult.getName().trim();
+            Logs.debug("Failed Test Case Name " + testName);
             String timestamp = new SimpleDateFormat( "MM_dd_yyyy_hh_mm_ss" ).format( new Date() );
 
             try {
-                GetScreenShot.capture( driver, testName + "_" + " " + timestamp );
+                String screenPath = GetScreenShot.capture( driver, testName + "_" + " " + timestamp );
+                Logs.debug("Screenshot captured in path " + screenPath);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -51,6 +56,7 @@ public class BaseTest {
     }
 
     public void reportLog(String message) {
+        Logs.info(message);
         Reporter.log(message);
     }
 
